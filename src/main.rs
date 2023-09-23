@@ -52,6 +52,8 @@ fn aoc1p2() -> u32 {
     return results[0..=2].to_vec().iter().sum();
 }
 
+const fn main() {}
+
 #[cfg(test)]
 mod tests {
     use crate::{aoc1p1, aoc1p2};
@@ -66,5 +68,3 @@ mod tests {
         assert_eq!(68467 + 68143 + 66810, aoc1p2());
     }
 }
-
-fn main() {}
