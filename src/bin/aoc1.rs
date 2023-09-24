@@ -1,7 +1,7 @@
 use std::fs;
 
 fn aoc1p1() -> Option<u32> {
-    let contents = fs::read_to_string("input.txt").map_or_else(
+    let contents = fs::read_to_string("aoc1-input.txt").map_or_else(
         |_| Vec::new(),
         |contents| {
             contents
@@ -26,7 +26,7 @@ fn aoc1p1() -> Option<u32> {
 }
 
 fn aoc1p2() -> u32 {
-    let contents = fs::read_to_string("input.txt").map_or_else(
+    let contents = fs::read_to_string("aoc1-input.txt").map_or_else(
         |_| Vec::new(),
         |contents| {
             contents
