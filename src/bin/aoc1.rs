@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::fs;
 
 fn aoc1p1() -> Option<u32> {

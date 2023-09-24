@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::fs;
 
 const fn main() {}
@@ -16,7 +18,7 @@ enum Result {
 }
 
 impl Result {
-    fn value(&self) -> u32 {
+    const fn value(&self) -> u32 {
         match self {
             Self::Win => 6,
             Self::Lose => 0,
@@ -44,39 +46,29 @@ impl RockPaperScissors {
         }
     }
 
-    fn get_choice_from_code(rps: &Self, code: &str) -> Self {
-        match (rps, code) {
-            (Self::Rock, "X") => Self::Scissors,
-            (Self::Rock, "Y") => Self::Rock,
-            (Self::Rock, "Z") => Self::Paper,
+    fn get_choice_from_code(&self, code: &str) -> Self {
+        match (self, code) {
+            (Self::Rock, "X") | (Self::Paper, "Z") | (Self::Scissors, "Y") => Self::Scissors,
+            (Self::Rock, "Y") | (Self::Paper, "X") | (Self::Scissors, "Z") => Self::Rock,
+            (Self::Rock, "Z") | (Self::Paper, "Y") | (Self::Scissors, "X") => Self::Paper,
 
-            (Self::Paper, "X") => Self::Rock,
-            (Self::Paper, "Y") => Self::Paper,
-            (Self::Paper, "Z") => Self::Scissors,
-
-            (Self::Scissors, "X") => Self::Paper,
-            (Self::Scissors, "Y") => Self::Scissors,
-            (Self::Scissors, "Z") => Self::Rock,
             _ => Self::Invalid,
         }
     }
 
-    fn check_result(&self, r: &Self) -> Result {
+    const fn check_result(&self, r: &Self) -> Result {
         match (self, r) {
-            (Self::Rock, Self::Scissors) => Result::Win,
-            (Self::Rock, Self::Paper) => Result::Lose,
-            (Self::Rock, Self::Rock) => Result::Tie,
-            (Self::Paper, Self::Rock) => Result::Win,
-            (Self::Paper, Self::Scissors) => Result::Lose,
-            (Self::Paper, Self::Paper) => Result::Tie,
-            (Self::Scissors, Self::Paper) => Result::Win,
-            (Self::Scissors, Self::Rock) => Result::Lose,
-            (Self::Scissors, Self::Scissors) => Result::Tie,
+            (Self::Rock, Self::Scissors)
+            | (Self::Paper, Self::Rock)
+            | (Self::Scissors, Self::Paper) => Result::Win,
+            (Self::Rock, Self::Rock)
+            | (Self::Scissors, Self::Scissors)
+            | (Self::Paper, Self::Paper) => Result::Tie,
             _ => Result::Lose,
         }
     }
 
-    fn value(&self) -> u32 {
+    const fn value(&self) -> u32 {
         match self {
             Self::Invalid => 0,
             Self::Rock => 1,
