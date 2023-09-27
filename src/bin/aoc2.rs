@@ -49,7 +49,7 @@ impl RockPaperScissors {
     fn get_choice_from_code(&self, code: &str) -> Self {
         match (self, code) {
             (Self::Rock, "X") | (Self::Paper, "Z") | (Self::Scissors, "Y") => Self::Scissors,
-            (Self::Rock, "Y") | (Self::Paper, "X") | (Self::Scissors, "Z") => Self::Rock,
+            (Self::Rock, "Y") | (Self::Scissors, "Z") | (Self::Paper, "X") => Self::Rock,
             (Self::Rock, "Z") | (Self::Paper, "Y") | (Self::Scissors, "X") => Self::Paper,
 
             _ => Self::Invalid,
