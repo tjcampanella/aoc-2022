@@ -1,3 +1,3 @@
-# rust-aoc
+# AOC - 2022
 
-## Advent of code solved using rust
+## 2022 Advent of code solved using rust
